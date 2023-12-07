@@ -33,12 +33,12 @@ Route::middleware(['isMasyarakat'])->group(function () {
     Route::post('/store', [UserController::class, 'storePengaduan'])->name('pekat.store');
     Route::get('/laporan/{siapa?}', [UserController::class, 'laporan'])->name('pekat.laporan');
 
-    // Logout Masyarakat
+    // Logout Mahasiswa
     Route::get('/logout', [UserController::class, 'logout'])->name('pekat.logout');
 });
 
 Route::middleware(['guest'])->group(function () {
-    // Login Masyarakat
+    // Login Mahasiswa
     Route::post('/login/auth', [UserController::class, 'login'])->name('pekat.login');
 
     // Register
@@ -56,7 +56,7 @@ Route::prefix('admin')->group(function () {
         // Petugas
         Route::resource('petugas', PetugasController::class);
 
-        // Masyarakat
+        // Mahasiswa
         Route::resource('masyarakat', MasyarakatController::class);
 
         // Laporan
