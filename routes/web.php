@@ -3,7 +3,7 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\LaporanController;
-use App\Http\Controllers\Admin\MasyarakatController;
+use App\Http\Controllers\Admin\MahasiswaController;
 use App\Http\Controllers\Admin\PengaduanController;
 use App\Http\Controllers\Admin\PetugasController;
 use App\Http\Controllers\Admin\TanggapanController;
@@ -23,30 +23,30 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [UserController::class, 'index'])->name('pekat.index');
+Route::get('/', [UserController::class, 'index'])->name('sipma.index');
 
-Route::post('/masyarakat/sendverification', [EmailController::class, 'sendVerification'])->name('pekat.sendVerification');
-Route::get('/masyarakat/verify/{nik}', [EmailController::class, 'verify'])->name('pekat.verify');
+Route::post('/mahasiswa/sendverification', [EmailController::class, 'sendVerification'])->name('sipma.sendVerification');
+Route::get('/mahasiswa/verify/{nik}', [EmailController::class, 'verify'])->name('sipma.verify');
 
-Route::middleware(['isMasyarakat'])->group(function () {
+Route::middleware(['isMahasiswa'])->group(function () {
     // Pengaduan
-    Route::post('/store', [UserController::class, 'storePengaduan'])->name('pekat.store');
-    Route::get('/laporan/{siapa?}', [UserController::class, 'laporan'])->name('pekat.laporan');
+    Route::post('/store', [UserController::class, 'storePengaduan'])->name('sipma.store');
+    Route::get('/laporan/{siapa?}', [UserController::class, 'laporan'])->name('sipma.laporan');
 
     // Logout Mahasiswa
-    Route::get('/logout', [UserController::class, 'logout'])->name('pekat.logout');
+    Route::get('/logout', [UserController::class, 'logout'])->name('sipma.logout');
 });
 
 Route::middleware(['guest'])->group(function () {
     // Login Mahasiswa
-    Route::post('/login/auth', [UserController::class, 'login'])->name('pekat.login');
+    Route::post('/login/auth', [UserController::class, 'login'])->name('sipma.login');
 
     // Register
-    Route::get('/register', [UserController::class, 'formRegister'])->name('pekat.formRegister');
-    Route::post('/register/auth', [UserController::class, 'register'])->name('pekat.register');
+    Route::get('/register', [UserController::class, 'formRegister'])->name('sipma.formRegister');
+    Route::post('/register/auth', [UserController::class, 'register'])->name('sipma.register');
 
     // Media Sosial
-    Route::get('auth/{provider}', [SocialController::class, 'redirectToProvider'])->name('pekat.auth');
+    Route::get('auth/{provider}', [SocialController::class, 'redirectToProvider'])->name('sipma.auth');
     Route::get('auth/{provider}/callback', [SocialController::class, 'handleProviderCallback']);
 });
 
@@ -57,7 +57,7 @@ Route::prefix('admin')->group(function () {
         Route::resource('petugas', PetugasController::class);
 
         // Mahasiswa
-        Route::resource('masyarakat', MasyarakatController::class);
+        Route::resource('mahasiswa', MahasiswaController::class);
 
         // Laporan
         Route::get('laporan', [LaporanController::class, 'index'])->name('laporan.index');

@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use App\Mail\VerifikasiEmailUntukRegistrasiPengaduanMasyarakat;
-use App\Models\Masyarakat;
+use App\Mail\VerifikasiEmailUntukRegistrasiPengaduanMahasiswa;
+use App\Models\Mahasiswa;
 use App\Models\Pengaduan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -28,10 +28,10 @@ class UserController extends Controller
     {
         // Pengecekan $request->username isinya email atau username
         if (filter_var($request->username, FILTER_VALIDATE_EMAIL)) {
-            // jika isinya string email, cek email nya di table masyarakat
-            $email = Masyarakat::where('email', $request->username)->first();
+            // jika isinya string email, cek email nya di table mahasiswa
+            $email = Mahasiswa::where('email', $request->username)->first();
 
-            // Pengecekan variable $email jika tidak ada di table masyarakat
+            // Pengecekan variable $email jika tidak ada di table mahasiswa
             if (!$email) {
                 return redirect()->back()->with(['pesan' => 'Email tidak terdaftar']);
             }
@@ -45,7 +45,7 @@ class UserController extends Controller
             }
 
             // Jalankan fungsi auth jika berjasil melewati validasi di atas
-            if (Auth::guard('masyarakat')->attempt(['email' => $request->username, 'password' => $request->password])) {
+            if (Auth::guard('mahasiswa')->attempt(['email' => $request->username, 'password' => $request->password])) {
                 // Jika login berhasil
                 return redirect()->back();
             } else {
@@ -53,10 +53,10 @@ class UserController extends Controller
                 return redirect()->back()->with(['pesan' => 'Akun tidak terdaftar!']);
             }
         } else {
-            // jika isinya string username, cek username nya di table masyarakat
-            $username = Masyarakat::where('username', $request->username)->first();
+            // jika isinya string username, cek username nya di table mahasiswa
+            $username = Mahasiswa::where('username', $request->username)->first();
 
-            // Pengecekan variable $username jika tidak ada di table masyarakat
+            // Pengecekan variable $username jika tidak ada di table mahasiswa
             if (!$username) {
                 return redirect()->back()->with(['pesan' => 'Username tidak terdaftar']);
             }
@@ -70,7 +70,7 @@ class UserController extends Controller
             }
 
             // Jalankan fungsi auth jika berjasil melewati validasi di atas
-            if (Auth::guard('masyarakat')->attempt(['username' => $request->username, 'password' => $request->password])) {
+            if (Auth::guard('mahasiswa')->attempt(['username' => $request->username, 'password' => $request->password])) {
                 // Jika login berhasil
                 return redirect()->back();
             } else {
@@ -88,15 +88,15 @@ class UserController extends Controller
 
     public function register(Request $request)
     {
-        // Masukkan semua data yg dikirim ke variable $data 
+        // Masukkan semua data yg dikirim ke variable $data
         $data = $request->all();
 
         // Buat variable $validate kemudian isinya Validator::make(datanya, [nama_field => peraturannya])
         $validate = Validator::make($data, [
-            'nik' => ['required', 'unique:masyarakat'],
+            'nim' => ['required', 'unique:mahasiswa'],
             'nama' => ['required', 'string'],
-            'email' => ['required', 'email', 'string', 'unique:masyarakat'],
-            'username' => ['required', 'string', 'regex:/^\S*$/u', 'unique:masyarakat'],
+            'email' => ['required', 'email', 'string', 'unique:mahasiswa'],
+            'username' => ['required', 'string', 'regex:/^\S*$/u', 'unique:mahasiswa'],
             'password' => ['required', 'min:6'],
             'telp' => ['required'],
         ]);
@@ -107,7 +107,7 @@ class UserController extends Controller
         }
 
         // Mengecek email
-        $email = Masyarakat::where('email', $request->username)->first();
+        $email = Mahasiswa::where('email', $request->username)->first();
 
         // Pengecekan jika email sudah terdaftar
         if ($email) {
@@ -115,16 +115,16 @@ class UserController extends Controller
         }
 
         // Mengecek username
-        $username = Masyarakat::where('username', $request->username)->first();
+        $username = Mahasiswa::where('username', $request->username)->first();
 
         // Pengecekan jika username sudah terdaftar
         if ($username) {
             return redirect()->back()->with(['pesan' => 'Username sudah terdaftar'])->withInput(['username' => null]);
         }
 
-        // Memasukkan data kedalam table Masyarakat
-        Masyarakat::create([
-            'nik' => $data['nik'],
+        // Memasukkan data kedalam table mahasiswa
+        Mahasiswa::create([
+            'nim' => $data['nim'],
             'nama' => $data['nama'],
             'email' => $data['email'],
             'username' => $data['username'],
@@ -133,30 +133,30 @@ class UserController extends Controller
         ]);
 
         // Kirim link verifikasi email
-        // $link = URL::temporarySignedRoute('pekat.verify', now()->addMinutes(30), ['nik' => $data['nik']]);
-        // Mail::to($data['email'])->send(new VerifikasiEmailUntukRegistrasiPengaduanMasyarakat($data['nama'], $link));
+        // $link = URL::temporarySignedRoute('sipma.verify', now()->addMinutes(30), ['nim' => $data['nim']]);
+        // Mail::to($data['email'])->send(new VerifikasiEmailUntukRegistrasiPengaduanmahasiswa($data['nama'], $link));
 
-        // Arahkan ke route pekat.index
-        return redirect()->route('pekat.index');
+        // Arahkan ke route sipma.index
+        return redirect()->route('sipma.index');
     }
 
     public function logout()
     {
-        // Fungsi logout dengan guard('masyarakat')
-        Auth::guard('masyarakat')->logout();
+        // Fungsi logout dengan guard('mahasiswa')
+        Auth::guard('mahasiswa')->logout();
 
-        // Arahkan ke route pekat.index
-        return redirect()->route('pekat.index');
+        // Arahkan ke route sipma.index
+        return redirect()->route('sipma.index');
     }
 
     public function storePengaduan(Request $request)
     {
-        // Pengecekan jika tidak ada masyarakat yang sedang login
-        if (!Auth::guard('masyarakat')->user()) {
+        // Pengecekan jika tidak ada mahasiswa yang sedang login
+        if (!Auth::guard('mahasiswa')->user()) {
             return redirect()->back()->with(['pesan' => 'Login dibutuhkan!'])->withInput();
         }
 
-        // Masukkan semua data yg dikirim ke variable $data 
+        // Masukkan semua data yg dikirim ke variable $data
         $data = $request->all();
 
         // Buat variable $validate kemudian isinya Validator::make(datanya, [nama_field => peraturannya])
@@ -184,7 +184,7 @@ class UserController extends Controller
         // Membuat variable $pengaduan isinya Memasukkan data kedalam table Pengaduan
         $pengaduan = Pengaduan::create([
             'tgl_pengaduan' => date('Y-m-d h:i:s'),
-            'nik' => Auth::guard('masyarakat')->user()->nik,
+            'nim' => Auth::guard('mahasiswa')->user()->nim,
             'judul_laporan' => $data['judul_laporan'],
             'isi_laporan' => $data['isi_laporan'],
             'tgl_kejadian' => $data['tgl_kejadian'],
@@ -197,7 +197,7 @@ class UserController extends Controller
         // Pengecekan variable $pengaduan
         if ($pengaduan) {
             // Jika mengirim pengaduan berhasil
-            return redirect()->route('pekat.laporan', 'me')->with(['pengaduan' => 'Berhasil terkirim!', 'type' => 'success']);
+            return redirect()->route('sipma.laporan', 'me')->with(['pengaduan' => 'Berhasil terkirim!', 'type' => 'success']);
         } else {
             // Jika mengirim pengaduan gagal
             return redirect()->back()->with(['pengaduan' => 'Gagal terkirim!', 'type' => 'danger']);
@@ -207,11 +207,11 @@ class UserController extends Controller
     public function laporan($siapa = '')
     {
         // Membuat variable $terverifikasi isinya menghitung pengaduan status pending
-        $terverifikasi = Pengaduan::where([['nik', Auth::guard('masyarakat')->user()->nik], ['status', '!=', '0']])->get()->count();
+        $terverifikasi = Pengaduan::where([['nim', Auth::guard('mahasiswa')->user()->nim], ['status', '!=', '0']])->get()->count();
         // Membuat variable $terverifikasi isinya menghitung pengaduan status proses
-        $proses = Pengaduan::where([['nik', Auth::guard('masyarakat')->user()->nik], ['status', 'proses']])->get()->count();
+        $proses = Pengaduan::where([['nim', Auth::guard('mahasiswa')->user()->nim], ['status', 'proses']])->get()->count();
         // Membuat variable $terverifikasi isinya menghitung pengaduan status selesai
-        $selesai = Pengaduan::where([['nik', Auth::guard('masyarakat')->user()->nik], ['status', 'selesai']])->get()->count();
+        $selesai = Pengaduan::where([['nim', Auth::guard('mahasiswa')->user()->nim], ['status', 'selesai']])->get()->count();
 
         // Masukkan 3 variable diatas ke dalam variable array $hitung
         $hitung = [$terverifikasi, $proses, $selesai];
@@ -219,13 +219,13 @@ class UserController extends Controller
         // Pengecekan jika ada parameter $siapa yang dikirimkan di url
         if ($siapa == 'me') {
             // Jika $siapa isinya 'me'
-            $pengaduan = Pengaduan::where('nik', Auth::guard('masyarakat')->user()->nik)->orderBy('tgl_pengaduan', 'desc')->get();
+            $pengaduan = Pengaduan::where('nim', Auth::guard('mahasiswa')->user()->nim)->orderBy('tgl_pengaduan', 'desc')->get();
 
             // Arahkan ke file user/laporan.blade.php sebari kirim data pengaduan, hitung, siapa
             return view('user.laporan', ['pengaduan' => $pengaduan, 'hitung' => $hitung, 'siapa' => $siapa]);
         } else {
             // Jika $siapa kosong
-            $pengaduan = Pengaduan::where([['nik', '!=', Auth::guard('masyarakat')->user()->nik], ['status', '!=', '0']])->orderBy('tgl_pengaduan', 'desc')->get();
+            $pengaduan = Pengaduan::where([['nim', '!=', Auth::guard('mahasiswa')->user()->nim], ['status', '!=', '0']])->orderBy('tgl_pengaduan', 'desc')->get();
 
             // Arahkan ke file user/laporan.blade.php sebari kirim data pengaduan, hitung, siapa
             return view('user.laporan', ['pengaduan' => $pengaduan, 'hitung' => $hitung, 'siapa' => $siapa]);

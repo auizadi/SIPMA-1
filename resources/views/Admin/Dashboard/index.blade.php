@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title', 'Halaman Dashboard')
-    
+
 @section('header', 'Dashboard')
 
 @section('content')
@@ -21,7 +21,7 @@
                 <div class="card-header">Mahasiswa</div>
                 <div class="card-body">
                     <div class="text-center">
-                        {{ $masyarakat }}
+                        {{ $mahasiswa }}
                     </div>
                 </div>
             </div>

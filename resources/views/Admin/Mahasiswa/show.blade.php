@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
-@section('title', 'Detail Masyarakat')
-    
+@section('title', 'Detail mahasiswa')
+
 @section('css')
     <style>
         .text-primary:hover {
@@ -19,9 +19,9 @@
 @endsection
 
 @section('header')
-    <a href="{{ route('masyarakat.index') }}" class="text-primary">Data Masyarakat</a>
+    <a href="{{ route('mahasiswa.index') }}" class="text-primary">Data mahasiswa</a>
     <a href="#" class="text-grey">/</a>
-    <a href="#" class="text-grey">Detail Masyarakat</a>
+    <a href="#" class="text-grey">Detail mahasiswa</a>
 @endsection
 
 @section('content')
@@ -30,42 +30,42 @@
             <div class="card">
                 <div class="card-header">
                     <div class="text-center">
-                        Detail Masyarakat
+                        Detail mahasiswa
                     </div>
                 </div>
                 <div class="card-body">
                     <table class="table">
                         <tbody>
                             <tr>
-                                <th>NIK</th>
+                                <th>nim</th>
                                 <td>:</td>
-                                <td>{{ $masyarakat->nik }}</td>
+                                <td>{{ $mahasiswa->nim }}</td>
                             </tr>
                             <tr>
                                 <th>Nama</th>
                                 <td>:</td>
-                                <td>{{ $masyarakat->nama }}</td>
+                                <td>{{ $mahasiswa->nama }}</td>
                             </tr>
                             <tr>
                                 <th>Email</th>
                                 <td>:</td>
-                                <td>{{ $masyarakat->email }}</td>
+                                <td>{{ $mahasiswa->email }}</td>
                             </tr>
                             <tr>
                                 <th>Username</th>
                                 <td>:</td>
-                                <td>{{ $masyarakat->username }}</td>
+                                <td>{{ $mahasiswa->username }}</td>
                             </tr>
                             <tr>
                                 <th>No Telp</th>
                                 <td>:</td>
-                                <td>{{ $masyarakat->telp }}</td>
+                                <td>{{ $mahasiswa->telp }}</td>
                             </tr>
                             <tr>
-                                <th>Hapus Masyarakat</th>
+                                <th>Hapus mahasiswa</th>
                                 <td>:</td>
                                 <td>
-                                    <form action="{{ route('masyarakat.destroy', $masyarakat->nik) }}" method="POST">
+                                    <form action="{{ route('mahasiswa.destroy', $mahasiswa->nim) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger" style="width: 100%" onclick="return confirm('APAKAH YAKIN?')">HAPUS</button>

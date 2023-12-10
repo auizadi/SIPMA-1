@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class IsMasyarakat
+class IsMahasiswa
 {
     /**
      * Handle an incoming request.
@@ -17,7 +17,7 @@ class IsMasyarakat
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::guard('masyarakat')->check()) {
+        if (Auth::guard('mahasiswa')->check()) {
             return $next($request);
         }
 

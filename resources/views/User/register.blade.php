@@ -63,11 +63,11 @@
             <div class="card mt-5">
                 <div class="card-body">
                     <h2 class="text-center mb-4">FORM DAFTAR</h2>
-                    <form action="{{ route('pekat.register') }}" method="POST">
+                    <form action="{{ route('sipma.register') }}" method="POST">
                         @csrf
                         <div class="form-group">
-                            <input type="number" value="{{ old('nik') }}" name="nik" placeholder="NIK" class="form-control @error('nik') is-invalid @enderror">
-                            @error('nik')
+                            <input type="number" value="{{ old('nim') }}" name="nim" placeholder="nim" class="form-control @error('nim') is-invalid @enderror">
+                            @error('nim')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>
@@ -115,11 +115,6 @@
                         </div>
                         <button type="submit" class="btn btn-purple">DAFTAR</button>
                     </form>
-                    <div class="text-center">
-                        <p class="my-3 text-secondary">Gunakan Akun Media Sosial Anda</p>
-                    </div>
-                    <a href="{{ route('pekat.auth', 'facebook') }}" class="btn btn-facebook mb-2"><i class="fa fa-facebook" style="font-size:14px"></i> FACEBOOK</a>
-                    <a href="{{ route('pekat.auth', 'google') }}" class="btn btn-google"><i class="fa fa-google" style="font-size:14px"></i> GOOGLE</a>
                 </div>
             </div>
             @if (Session::has('pesan'))
@@ -127,7 +122,7 @@
                     {{ Session::get('pesan') }}
                 </div>
             @endif
-            <a href="{{ route('pekat.index') }}" class="btn btn-light text-black mt-3" style="width: 100%; font-weight: 600">Kembali ke Halaman Utama</a>
+            <a href="{{ route('sipma.index') }}" class="btn btn-light text-black mt-3" style="width: 100%; font-weight: 600">Kembali ke Halaman Utama</a>
         </div>
     </div>
 </div>
