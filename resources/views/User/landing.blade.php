@@ -56,20 +56,20 @@
 @section('content')
 {{-- Section Header --}}
 <section class="header">
-    @if (Auth::guard('masyarakat')->check() && Auth::guard('masyarakat')->user()->email_verified_at == null)
+    {{-- @if (Auth::guard('mahasiswa')->check() && Auth::guard('mahasiswa')->user()->email_verified_at == null)
     <div class="row">
         <div class="col">
             <div class="notification">
-                Konfirmasi email <span class="font-weight-bold">{{ Auth::guard('masyarakat')->user()->email }}</span>
+                Konfirmasi email <span class="font-weight-bold">{{ Auth::guard('mahasiswa')->user()->email }}</span>
                 untuk melindungi akun Anda.
-                <form action="{{ route('pekat.sendVerification') }}" method="POST" style="display: inline-block">
+                <form action="{{ route('sipma.sendVerification') }}" method="POST" style="display: inline-block">
                     @csrf
                     <button type="submit" class="btn btn-white">Verifikasi Sekarang</button>
                 </form>
             </div>
         </div>
     </div>
-    @endif
+    @endif --}}
     <nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
         <div class="container">
             <div class="container-fluid">
@@ -82,14 +82,14 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
-                    @if(Auth::guard('masyarakat')->check())
+                    @if(Auth::guard('mahasiswa')->check())
                     <ul class="navbar-nav text-center ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link ml-3 text-white" href="{{ route('pekat.laporan') }}">Laporan</a>
+                            <a class="nav-link ml-3 text-white" href="{{ route('sipma.laporan') }}">Laporan</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link ml-3 text-white" href="{{ route('pekat.logout') }}"
-                                style="text-decoration: underline">{{ Auth::guard('masyarakat')->user()->nama }}</a>
+                            <a class="nav-link ml-3 text-white" href="{{ route('sipma.logout') }}"
+                                style="text-decoration: underline">{{ Auth::guard('mahasiswa')->user()->nama }}</a>
                         </li>
                     </ul>
                     @else
@@ -99,7 +99,7 @@
                                 data-target="#loginModal">Masuk</button>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('pekat.formRegister') }}" class="btn btn-outline-purple">Daftar</a>
+                            <a href="{{ route('sipma.formRegister') }}" class="btn btn-outline-purple">Daftar</a>
                         </li>
                     </ul>
                     @endauth
@@ -134,7 +134,7 @@
             @endif
 
             <div class="card mb-3">Tulis Laporan Disini</div>
-            <form action="{{ route('pekat.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('sipma.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <input type="text" value="{{ old('judul_laporan') }}" name="judul_laporan"
@@ -195,21 +195,21 @@
             <div class="modal-body">
                 <h3 class="mt-3">Masuk terlebih dahulu</h3>
                 <p>Silahkan masuk menggunakan akun yang sudah didaftarkan.</p>
-                <label>Gunakan Akun Media Sosial Anda</label>
+                {{-- <label>Gunakan Akun Media Sosial Anda</label>
                 <div class="row">
                     <div class="col">
-                        <a href="{{ route('pekat.auth', 'facebook') }}" class="btn btn-facebook mb-2"><i
+                        <a href="{{ route('sipma.auth', 'facebook') }}" class="btn btn-facebook mb-2"><i
                                 class="fa fa-facebook" style="font-size:14px"></i> FACEBOOK</a>
                     </div>
                     <div class="col">
-                        <a href="{{ route('pekat.auth', 'google') }}" class="btn btn-google"><i class="fa fa-google"
+                        <a href="{{ route('sipma.auth', 'google') }}" class="btn btn-google"><i class="fa fa-google"
                                 style="font-size:14px"></i> GOOGLE</a>
                     </div>
                 </div>
                 <div class="text-center">
                     <p class="my-2 text-secondary">Atau</p>
-                </div>
-                <form action="{{ route('pekat.login') }}" method="POST">
+                </div> --}}
+                <form action="{{ route('sipma.login') }}" method="POST">
                     @csrf
                     <div class="form-group">
                         <label for="username">Username atau Email</label>

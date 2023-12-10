@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title', 'Detail Pengaduan')
-    
+
 @section('css')
     <style>
         .text-primary:hover {
@@ -37,7 +37,7 @@
             <div class="card">
                 <div class="card-header">
                     <div class="text-center">
-                        Pengaduan Masyarakat
+                        Pengaduan mahasiswa
                     </div>
                 </div>
                 <div class="card-body">
@@ -49,7 +49,7 @@
                                 <td>{{ $pengaduan->nik }}</td>
                             </tr>
                             <tr>
-                                <th>Nama Masyarakat</th>
+                                <th>Nama mahasiswa</th>
                                 <td>:</td>
                                 <td>{{ $pengaduan->user->nama }}</td>
                             </tr>
@@ -110,7 +110,7 @@
             <div class="card">
                 <div class="card-header">
                     <div class="text-center">
-                        Tanggapan Petugas 
+                        Tanggapan Petugas
                     </div>
                 </div>
                 <div class="card-body">

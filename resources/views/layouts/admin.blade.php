@@ -10,7 +10,7 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
         integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-        
+
     @yield('css')
 
     <style>
@@ -28,7 +28,7 @@
     </style>
 
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
-    
+
 </head>
 
 <body>
@@ -51,8 +51,8 @@
                 <li class="{{ Request::is('admin/petugas') ? 'active' : '' }}">
                     <a href="{{ route('petugas.index') }}">Petugas</a>
                 </li>
-                <li class="{{ Request::is('admin/masyarakat') ? 'active' : '' }}">
-                    <a href="{{ route('masyarakat.index') }}">Mahasiswa</a>
+                <li class="{{ Request::is('admin/mahasiswa') ? 'active' : '' }}">
+                    <a href="{{ route('mahasiswa.index') }}">Mahasiswa</a>
                 </li>
                 <li class="{{ Request::is('admin/laporan') ? 'active' : '' }}">
                     <a href="{{ route('laporan.index') }}">Laporan</a>
