@@ -14,15 +14,15 @@
     @yield('css')
 
     <style>
-        .btn-yellow {
-            background: #ffc436;
-            border: 1px solid #ffc436;
+        .btn-purple {
+            background: #800080;
+            border: 1px solid #800080;
             color: #fff;
         }
 
-        .btn-yellow:hover {
-            background: #ffc436;
-            border: 1px solid #ffc436;
+        .btn-purple:hover {
+            background: #800080;
+            border: 1px solid #800080;
             color: #fff;
         }
     </style>

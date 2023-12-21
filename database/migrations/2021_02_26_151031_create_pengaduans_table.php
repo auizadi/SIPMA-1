@@ -21,7 +21,7 @@ class CreatePengaduansTable extends Migration
             $table->text('isi_laporan');
             $table->dateTime('tgl_kejadian');
             $table->text('lokasi_kejadian');
-            $table->enum('kategori_kejadian', ['agama', 'hukum', 'lingkungan', 'sosial']);
+            $table->enum('kategori_kejadian', ['sarpras', 'biaya', 'seksual', 'sosial']);
             $table->string('foto');
             $table->enum('status', ['0', 'proses', 'selesai']);
 

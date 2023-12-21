@@ -10,11 +10,11 @@
 
     <style>
         body {
-            background: #ffc436;
+            background: #800080;
         }
 
         .btn-purple {
-            background: #ffc436;
+            background: #800080;
             width: 100%;
             color: #fff;
         }
@@ -28,8 +28,8 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-5">
-                <h2 class="text-center text-white mb-0 mt-5">sipma</h2>
-                <P class="text-center text-white mb-5">Pengaduan mahasiswa</P>
+                <h2 class="text-center text-white mb-0 mt-5">SIPMA</h2>
+                <P class="text-center text-white mb-5">Sistem Informasi Pengaduan mahasiswa</P>
                 <div class="card mt-5">
                     <div class="card-body">
                         <h2 class="text-center mb-5">FORM PETUGAS</h2>

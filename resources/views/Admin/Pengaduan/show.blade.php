@@ -16,9 +16,9 @@
             color: #6c757d;
         }
 
-        .btn-yellow {
-            background: #ffc436;
-            border: 1px solid #ffc436;
+        .btn-purple {
+            background: #800080;
+            border: 1px solid #800080;
             color: #fff;
             width: 100%;
         }
@@ -44,7 +44,7 @@
                     <table class="table">
                         <tbody>
                             <tr>
-                                <th>NIK</th>
+                                <th>NIM</th>
                                 <td>:</td>
                                 <td>{{ $pengaduan->nik }}</td>
                             </tr>
@@ -141,7 +141,7 @@
                             <label for="tanggapan">Tanggapan</label>
                             <textarea name="tanggapan" id="tanggapan" rows="4" class="form-control" placeholder="Belum ada tanggapan">{{ $tanggapan->tanggapan ?? '' }}</textarea>
                         </div>
-                        <button type="submit" class="btn btn-yellow">KIRIM</button>
+                        <button type="submit" class="btn btn-purple">KIRIM</button>
                     </form>
                     @if (Session::has('status'))
                         <div class="alert alert-success mt-2">

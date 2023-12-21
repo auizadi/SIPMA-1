@@ -4,18 +4,18 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
     body {
-        background: #ffc436;
+        background: #800080;
     }
 
     .btn-purple {
-        background: #ffc436;
+        background: #800080;
         width: 100%;
         color: #fff;
         font-weight: 600;
     }
 
     .btn-purple:hover {
-        background: #6a70fc;
+        background: #580058;
         width: 100%;
         color: #fff;
         font-weight: 600;

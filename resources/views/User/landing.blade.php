@@ -7,7 +7,7 @@
     .notification {
         padding: 14px;
         text-align: center;
-        background: #f4b704;
+        background: #800080;
         color: #fff;
         font-weight: 300;
     }

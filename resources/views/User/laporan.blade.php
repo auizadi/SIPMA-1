@@ -22,12 +22,12 @@
 </style>
 @endsection
 
-@section('title', 'sipma - Pengaduan mahasiswa')
+@section('title', 'SIPMA - Sistem Informasi Pengaduan Mahasiswa')
 
 @section('content')
 {{-- Section Header --}}
 <section class="header">
-    @if (Auth::guard('mahasiswa')->check() && Auth::guard('mahasiswa')->user()->email_verified_at == null)
+    {{-- @if (Auth::guard('mahasiswa')->check() && Auth::guard('mahasiswa')->user()->email_verified_at == null)
     <div class="row">
         <div class="col">
             <div class="notification">
@@ -39,13 +39,13 @@
             </div>
         </div>
     </div>
-    @endif
+    @endif --}}
     <nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
         <div class="container">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{{ route('sipma.index') }}">
-                    <h4 class="semi-bold mb-0 text-white">sipma</h4>
-                    <p class="italic mt-0 text-white">Pengaduan mahasiswa</p>
+                    <h4 class="semi-bold mb-0 text-white">SIPMA</h4>
+                    <p class="italic mt-0 text-white">Sistem Informasi Pengaduan Mahasiswa</p>
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -114,9 +114,9 @@
                         <div class="input-group mb-3">
                             <select name="kategori_kejadian" class="custom-select" id="inputGroupSelect01" required>
                                 <option value="" selected>Pilih Kategori Kejadian</option>
-                                <option value="agama">Agama</option>
-                                <option value="hukum">Hukum</option>
-                                <option value="lingkungan">Lingkungan</option>
+                                <option value="sarpras">Sarana dan Prasarana</option>
+                                <option value="biaya">Biaya Kuliah</option>
+                                <option value="seksual">Kekerasan Seksual</option>
                                 <option value="sosial">Sosial</option>
                             </select>
                         </div>
@@ -215,7 +215,7 @@
 <div class="mt-5">
     <hr>
     <div class="text-center">
-        <p class="italic text-secondary">© 2021 Ihsanfrr • All rights reserved</p>
+        <p class="italic text-secondary">© 2023 Team5. All rights reserved</p>
     </div>
 </div>
 @endsection
